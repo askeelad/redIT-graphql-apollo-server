@@ -26,11 +26,7 @@ const startServer = async () => {
       const token = req.headers["authorization"].split(" ")[1] || "";
       let user = null;
       if (token) {
-        user = jwt.verify(
-          token,
-          process.env.JWT_SECRET ||
-            "Oc8IaST+4lZa1DUkRu6TZe7pqbJuY+8cI8pGlw1tvFE="
-        );
+        user = jwt.verify(token, process.env.JWT_SECRET);
       }
       return { user };
     },
@@ -45,10 +41,7 @@ const startServer = async () => {
     // Validate user credentials here and get user info
     const user = { id: 1, username: "testuser" }; // Example user
 
-    const token = jwt.sign(
-      user,
-      process.env.JWT_SECRET || "Oc8IaST+4lZa1DUkRu6TZe7pqbJuY+8cI8pGlw1tvFE="
-    );
+    const token = jwt.sign(user, process.env.JWT_SECRET);
     res.json({ token });
   });
 
