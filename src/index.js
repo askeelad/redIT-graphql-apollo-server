@@ -24,8 +24,6 @@ const startServer = async () => {
     schema,
     context: ({ req }) => {
       const token = req.headers["authorization"].split(" ")[1] || "";
-      console.log(token);
-      console.log(process.env.JWT_SECRET);
       let user = null;
       if (token) {
         user = jwt.verify(
@@ -34,7 +32,6 @@ const startServer = async () => {
             "Oc8IaST+4lZa1DUkRu6TZe7pqbJuY+8cI8pGlw1tvFE="
         );
       }
-      console.log(user);
       return { user };
     },
     playground: true,
